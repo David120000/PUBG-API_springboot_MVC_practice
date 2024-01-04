@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+    <title>PUBG Player Database</title>
+    <link rel="stylesheet" th:href="@{/stylesheet.css}">
+</head>
+<body>
+    <h1 style="text-align: center;">PUBG Player Database</h1>
+    <h3 style="text-align: center;" th:text="${player.playerName} + ' lifetime statistics'"></h3>
+
+    <div class="flexbox">    
+       <p th:text="'Total kills: ' + ${player.totalKills}"></p>
+       <p th:text="'Total damage: ' + ${player.totalDamage}"></p>
+    </div>
+
+    <div class="flexbox">
+        <ul>
+            <li th:each="weaponstat : ${player.weaponStats}" th:text="${weaponstat}"></li>
+        </ul>
+    </div>
+    
+</body>
+</html>

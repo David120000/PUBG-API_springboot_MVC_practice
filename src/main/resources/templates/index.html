@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+    <title>PUBG Player Database</title>
+    <link rel="stylesheet" th:href="@{/stylesheet.css}">
+</head>
+<body>
+    <h1 style="text-align: center;">PUBG Player Database</h1>
+    <h3 style="text-align: center;">Get kill statistics!</h3>
+
+    <div class="flexbox">    
+        <p>Search players by their in-game name:</p>
+
+        <form action="/search/players" method="get">
+            <input type="text" name="playername" placeholder="Player Name" required/>
+            <br/>
+            <input type="submit" value="Search"/>
+        </form>
+
+        <p th:if="${errormessage}" th:text="${errormessage}"></p>
+    </div>
+
+    <div th:if="${players != null && players.size() > 0}" class="flexbox">
+        <h3>Players already in cache:</h3>
+        <dl>
+            <dt th:each="player : ${players}" th:text="${player.playerName} + ' (updated on: ' +  ${player.getLastModifiedAsString()} + ')'">
+            </dt>
+        </dl>
+    </div>
+    
+
+</body>
+</html>
